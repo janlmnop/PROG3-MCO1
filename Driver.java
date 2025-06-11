@@ -7,19 +7,23 @@
 
 import java.util.*;
 
-public class Sample {
+public class Driver {
+
+    private static void printOptions() {
+        System.out.println("Select from the following options: ");        
+            System.out.println("[1] view character");
+            System.out.println("[2] create character");
+            System.out.println("[3] edit character");
+            System.out.println("[4] delete character");
+            // should there be an exit option ?
+    }
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
         int option;
 
 
         do {
-            System.out.println("Select from the following options: ");        
-            System.out.println("[1] view character");
-            System.out.println("[2] create character");
-            System.out.println("[3] edit character");
-            System.out.println("[4] delete character");
-            // should there be an exit option
+            printOptions();
             System.out.print(">> ");
             option = input.nextInt();
 

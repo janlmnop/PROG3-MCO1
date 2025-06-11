@@ -1,0 +1,91 @@
+MCO1 DUE: June 28, 2025 (Sa) 2100 
+
+.............................................................................
+MCO1 DELIVERABLES CHECKLIST:
+[ ] upload zip file
+    [I] signed declaration of original work
+    [I] class diagram (UML).pdf
+    [ ] Javadoc-generated documentation for proponent-defined classes with pertinent information
+    [ ] source code.java
+    [ ] video demo 
+    [ ] test plan ?
+[ ] email zip file to yourself (exclude the video)
+
+.............................................................................
+NOTES:
+> there should be a log for the combats
+> MCO1 is text-based via CLI
+> remember to error check 
+    - display error message
+> include documentation (refer to prog2)
+> need den ng test plan
+> demo for MCO1 will be a video
+> game proper goes in driver
+> I'm not sure if exit option is needed in the menu options
+
+.............................................................................
+UML ENTITIES:
+    > character
+        attributes [has] :
+        - energy points (EP) : int = 50 max
+        - health points (HP) : int = 100 max
+        - abilities
+            > an array of classes ?
+        methods [can] :
+        * dont forget constructors, getters, and setters
+        * check specs 
+        - defend()
+            > costs 5 EP + takes half damage
+        - recharge
+            > no EP cost + no action + regain (add) 5 EP
+    > weapons (?)
+
+.............................................................................
+FLOW: 
+> player 1 character selection
+    > view character list
+        > view characters in detail
+        > create character
+            > class selection 
+                - determines character's ability pool
+                - mage, rogue, warrior
+                    - each have their own ability
+            > class ability selection 
+                - 3 required
+            > name character 
+                - a setter ? 
+                - must be unique -- a checker for that ? -- refer to equals
+        > edit character
+            > edit abilities
+        > delete character
+            - any character (object) can be deleted
+            - might come from a file
+            - only max of 6 characters 
+    > select characters
+> player 2 character selection 
+    > same as above
+> fight!
+    - set HP and EP to max
+        - 100 and 50 respectively
+    - +5 EP each round
+    - display round number, current HP, current EP of both characters
+    > display player 1's list of moves + EP cost
+    > prompt player 1 to choose a move + no invalid inputs (ie. insufficient EP)
+    > display player 2's list of moves + EP cost
+    > prompt player 2 to choose a move + no invalid inputs (ie. insufficient EP)
+    > execute moves
+    > display round outcomes (damage dealt, health change, EP spent)
+    > check if battle has ended
+        - 0 HP 
+    > if battle ended
+        - then, declare results + prompt rematch / go back to main menu
+        - else, continue to next round
+
+.............................................................................
+LEGEND:
+DUE
+TODO
+TASKS
+[ ] pending
+[I] in-progress
+[D] done
