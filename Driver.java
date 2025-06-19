@@ -1,40 +1,86 @@
 // DUE :  June 28, 2025 (Sa) 2100
 
 // TASKS
-// [ ] player 1 chooses from the options
-// [ ] player 2 chooses from the options
-// [ ] program proper
+// [ ] Player selection ? like from a list (file manipulation)
+// [D] Player 1 character selection
+//      [D] view characters (list)
+//          [D] view characters (in detail)
+//          [D] character selection
+//      [D] create character
+//          [D] class selection
+//          [D] class ability selection
+//          [D] name character
+//          [D] option to add description
+//      [D] edit character
+//      [D] delete character
+// [D] Player 2 character selection (same process)
+// [ ] Fight!
+//      [D] +5 EP at the start of each round (ideally after round 1)
+//      [ ] prompt players to choose from moves (loops until input is valid)
+//      [ ] execute moves (deal damages, change health, subtract from EP and HP)
+//      [ ] losing sequence
+//      [ ] prompt player play again
+// [ ] Miscellaneous
+//      [ ] add new attributes and methods to UML
+//      [ ] documenation
+//      [ ] make sure code follows Java best practices
+
+// reminders: 
+// - character names should be unique (make a checker)
+// - test invalid inputs
+
 
 import java.util.*;
 
 public class Driver {
-
-    private static void printOptions() {
-        System.out.println("Select from the following options: ");        
-            System.out.println("[1] view character");
-            System.out.println("[2] create character");
-            System.out.println("[3] edit character");
-            System.out.println("[4] delete character");
-            // should there be an exit option ?
-    }
     public static void main(String[] args) {
-        Scanner input = new Scanner(System.in);
-        int option;
+        // testing (delete sometime soon)
+        ArrayList<Character> roster1 = new ArrayList<Character>();
+        roster1.add(new Character("Dog"));
+        roster1.getFirst().setType("Mage");
+        Mage m = new Mage();
+        roster1.get(0).abilities.add(0, m.abilities.get(0));
+        roster1.get(0).abilities.add(1, m.abilities.get(1));
+        roster1.get(0).abilities.add(2, m.abilities.get(2));
 
+        ArrayList<Character> roster2 = new ArrayList<Character>();
+        roster2.add(new Character("Cat"));
+        roster2.getFirst().setType("Rogue");
+        Rogue r = new Rogue();
+        roster2.get(0).abilities.add(0, r.abilities.get(0));
+        roster2.get(0).abilities.add(1, r.abilities.get(1));
+        roster2.get(0).abilities.add(2, r.abilities.get(2));
 
-        do {
-            printOptions();
-            System.out.print(">> ");
-            option = input.nextInt();
+        Player player1 = new Player(roster1);
+        Player player2 = new Player(roster2);
+        
 
-            switch (option) {
-                case 1 : System.out.println("option 1"); break;
-                case 2 : System.out.println("option 2"); break; 
-                case 3 : System.out.println("option 3"); break;
-                case 4 : System.out.println("option 4"); break;
-            }
-        } while (option > 0 && option < 5);
+        // this is where the Driver methods are stored (for now)
+        Methods funcs = new Methods();
 
-        input.close();
+        // to get user inputs
+        Scanner nameSC = new Scanner(System.in);
+        Scanner numSC = new Scanner(System.in);
+        Scanner charSC = new Scanner(System.in);
+
+        // opening sequence -> make creative
+        System.out.println("Fatal Fantasy");
+
+        // Player 1 Character Selection
+        System.out.println("\n[Player 1] ");
+        funcs.characterManagement(player1, nameSC, numSC, charSC);
+
+        // Player 2 Character Selection
+        funcs.quitFlag = false;
+        System.out.println("\n[Player 2] ");
+        funcs.characterManagement(player2, nameSC, numSC, charSC);
+
+        // Fight! : game proper
+        funcs.gameProper(player1, player2, numSC); 
+
+        // close Scanners
+        nameSC.close();
+        numSC.close();
+        charSC.close();
     }
 }
