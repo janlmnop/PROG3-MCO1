@@ -6,7 +6,7 @@ MCO1 DELIVERABLES CHECKLIST:
     [I] signed declaration of original work
     [I] class diagram (UML).pdf
     [ ] Javadoc-generated documentation for proponent-defined classes with pertinent information
-    [ ] source code.java
+    [I] source code.java
     [ ] video demo 
     [ ] test plan ?
 [ ] email zip file to yourself (exclude the video)
@@ -20,11 +20,12 @@ NOTES:
 > include documentation (refer to prog2)
 > need den ng test plan
 > demo for MCO1 will be a video
-> game proper goes in driver
 > I'm not sure if exit option is needed in the menu options
 
 .............................................................................
 UML ENTITIES:
+    > a Player class has an array of objects that are of Character class
+        > the player must have these
     > character
         attributes [has] :
         - energy points (EP) : int = 50 max
@@ -43,7 +44,7 @@ UML ENTITIES:
 .............................................................................
 FLOW: 
 > player 1 character selection
-    > view character list
+    > view character list: option to select a character (determinant to go to player 2)
         > view characters in detail
         > create character
             > class selection 
@@ -65,6 +66,7 @@ FLOW:
 > player 2 character selection 
     > same as above
 > fight!
+    - create a loop that ends if one player's HP is now 0
     - set HP and EP to max
         - 100 and 50 respectively
     - +5 EP each round
@@ -82,10 +84,3 @@ FLOW:
         - else, continue to next round
 
 .............................................................................
-LEGEND:
-DUE
-TODO
-TASKS
-[ ] pending
-[I] in-progress
-[D] done
