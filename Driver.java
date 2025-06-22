@@ -12,14 +12,13 @@
 //          [D] name character
 //          [D] option to add description
 //      [D] edit character
-//      [D] delete character
+//      [D] delete characters
 // [D] Player 2 character selection (same process)
 // [ ] Fight!
 //      [D] +5 EP at the start of each round (ideally after round 1)
-//      [ ] prompt players to choose from moves (loops until input is valid)
+//      [D] prompt players to choose from moves (loops until input is valid)
 //      [ ] execute moves (deal damages, change health, subtract from EP and HP)
 //      [ ] losing sequence
-//      [ ] prompt player play again
 // [ ] Miscellaneous
 //      [ ] add new attributes and methods to UML
 //      [ ] documenation
@@ -34,26 +33,28 @@ import java.util.*;
 
 public class Driver {
     public static void main(String[] args) {
-        // testing (delete sometime soon)
-        ArrayList<Character> roster1 = new ArrayList<Character>();
-        roster1.add(new Character("Dog"));
-        roster1.getFirst().setType("Mage");
-        Mage m = new Mage();
-        roster1.get(0).abilities.add(0, m.abilities.get(0));
-        roster1.get(0).abilities.add(1, m.abilities.get(1));
-        roster1.get(0).abilities.add(2, m.abilities.get(2));
+        // // testing purposes
+        // ArrayList<Character> roster1 = new ArrayList<Character>();
+        // roster1.add(new Character("Dog"));
+        // roster1.getFirst().setType("Warrior");
+        // Warrior w = new Warrior();
+        // roster1.get(0).abilities.add(0, w.abilities.get(1));
+        // roster1.get(0).abilities.add(1, w.abilities.get(2));
+        // roster1.get(0).abilities.add(2, w.abilities.get(3));
 
-        ArrayList<Character> roster2 = new ArrayList<Character>();
-        roster2.add(new Character("Cat"));
-        roster2.getFirst().setType("Rogue");
-        Rogue r = new Rogue();
-        roster2.get(0).abilities.add(0, r.abilities.get(0));
-        roster2.get(0).abilities.add(1, r.abilities.get(1));
-        roster2.get(0).abilities.add(2, r.abilities.get(2));
+        // ArrayList<Character> roster2 = new ArrayList<Character>();
+        // roster2.add(new Character("Cat"));
+        // roster2.getFirst().setType("Rogue");
+        // Rogue r = new Rogue();
+        // roster2.get(0).abilities.add(0, r.abilities.get(0));
+        // roster2.get(0).abilities.add(1, r.abilities.get(1));
+        // roster2.get(0).abilities.add(2, r.abilities.get(2));
 
-        Player player1 = new Player(roster1);
-        Player player2 = new Player(roster2);
-        
+        // Player player1 = new Player(roster1);
+        // Player player2 = new Player(roster2);
+
+        Player player1 = new Player();
+        Player player2 = new Player();
 
         // this is where the Driver methods are stored (for now)
         Methods funcs = new Methods();

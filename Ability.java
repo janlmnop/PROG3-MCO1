@@ -4,6 +4,8 @@ public class Ability {
     private String description;
     private int EPcost;
     private int attackDamage;
+    private int healthRecovery;
+    private int EPrecovery;
 
     /* CONSTRUCTOR(S) */
     public Ability(String name) {
@@ -42,6 +44,22 @@ public class Ability {
 
     public void setAttackDamage(int attackDamage) {
         this.attackDamage = attackDamage;
+    }
+
+    public int getHealthRecovery() {
+        return healthRecovery;
+    }
+
+    public void setHealthRecovery(int healthRecovery) {
+        this.healthRecovery = healthRecovery;
+    }
+
+    public int getEPrecovery() {
+        return EPrecovery;
+    }
+
+    public void setEPrecovery(int EPrecovery) {
+        this.EPrecovery = EPrecovery;
     }
 
 

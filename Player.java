@@ -8,7 +8,7 @@ public class Player {
 
     /* CONSTRUCTOR(S) */
     public Player() {
-        // would ideally set the player's characters; not sure if that is a file thing
+        
     }
 
     public Player(ArrayList<Character> roster) {

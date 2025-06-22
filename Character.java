@@ -102,17 +102,27 @@ public class Character {
                 System.out.println(i + " | " + abilities.get(i).getName() + "\t\t | " + abilities.get(i).getEPCost() + "\t   | " + abilities.get(i).getAttackDamage());
             System.out.println("--+----------------------+---------+--------");
         }
-        System.out.println("4 | Defend\t\t | 5       | 0");
+        System.out.println("3 | Defend\t\t | 5       | 0");
         System.out.println("--+----------------------+---------+--------");
-        System.out.println("5 | Recharge\t\t | 0       | 0");
+        System.out.println("4 | Recharge\t\t | 0       | 0");
         System.out.println("--+----------------------+---------+--------");
     }
 
-    public void defend () {
+    public void attack() {
+                
+    }
+    
+    
+    public void executeMove(Player player1, Player player2, int move) {
+        player2.getChosenCharacter().setHP(player2.getChosenCharacter().getHP() - player1.getChosenCharacter().getAbilities().get(move).getAttackDamage());
+        player1.getChosenCharacter().setEP(player1.getChosenCharacter().getEP() - player1.getChosenCharacter().getAbilities().get(move).getEPCost());
+    }
+
+    public void defend() {
         // not sure yet
     }
 
-    public void recharge () {
+    public void recharge() {
         // not sure yet
     }
 }

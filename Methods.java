@@ -1,7 +1,6 @@
 /**
  * Driver Methods (modularization so it looks cleaner)
 */
-// QUESTION : are we allowed to do this? if bawal, we could just public static sa driver
 import java.util.*;
 
 public class Methods {
@@ -57,6 +56,8 @@ public class Methods {
         if (option2 == 0) {
             System.out.println(thisPlayer.getName() + " selected " + thisPlayer.getRoster().get(option1).getName());
             thisPlayer.setChosenCharacter(thisPlayer.getRoster().get(option1));
+            thisPlayer.getChosenCharacter().abilities.add(new Ability("defend"));
+            thisPlayer.getChosenCharacter().abilities.add(new Ability("defend"));
             quitFlag = true;
         } else if (option2 == 1) {
             System.out.println("\nName: " + thisPlayer.getRoster().get(option1).getName());
@@ -210,47 +211,60 @@ public class Methods {
     /* FIGHT! OR GAME PROPER PORTION */
     public void gameProper(Player player1, Player player2, Scanner numSC) {
         System.out.println("\nFIGHT!");
-        displayStats(player1, player2);
 
         int i=1;
         do {
             if (i > 1) {
                 player1.getChosenCharacter().setEP(player1.getChosenCharacter().getEP() + 5);
                 player2.getChosenCharacter().setEP(player2.getChosenCharacter().getEP() + 5);
-            } /* not so sure yet if this works */ 
+            }
 
             System.out.println("\nROUND " + i);
+            displayStats(player1, player2);
 
             System.out.println("\n[Player 1's Move]");
             System.out.println("Select from the following moves:");
             player1.getChosenCharacter().displayMoves();
-            System.out.print("Move: ");
-            int option1 = numSC.nextInt();
-            // TODO : check if the move is valid
+            int p1Move;
+            do {
+                System.out.print("Move: ");
+                p1Move = numSC.nextInt();
+            } while (isValidMove(player1, player1.getChosenCharacter(), p1Move) != false);
 
             System.out.println("\n[Player 2's Move]");
             System.out.println("Select from the following moves:");
             player2.getChosenCharacter().displayMoves();
-            System.out.print("Move: ");
-            int option2 = numSC.nextInt();
+            int p2Move;
+            do {
+                System.out.print("Move: ");
+                p2Move = numSC.nextInt();
+            } while (isValidMove(player2, player2.getChosenCharacter(), p2Move) != false);
 
-            // execute move (not yet so sure about implementation)
-
-            // testing
-            player1.getChosenCharacter().energyPoints -= 5;
-            player1.getChosenCharacter().healthPoints -= 35;
-            player2.getChosenCharacter().energyPoints -= 15;
-            player2.getChosenCharacter().healthPoints -= 20;
+            // execute move
+            player1.getChosenCharacter().executeMove(player1, player2, p1Move);
+            player2.getChosenCharacter().executeMove(player2, player1, p2Move);
 
             displayStats(player1, player2);
             
             i++;
         } while (player1.getChosenCharacter().getHP() > 0 && player2.getChosenCharacter().getHP() > 0);
 
-        // losing sequence
-        // prompt player play again
+        if (player1.getChosenCharacter().getHP() > player2.getChosenCharacter().getHP()) {
+            System.out.println(player1.getName() + " Won!");
+        }
     }
 
+    // checks for valid moves | if epcost is gt ep ng character
+    public boolean isValidMove(Player player, Character playerCharacter, int move) {
+        if(playerCharacter.abilities.get(move).getEPCost() > player.getChosenCharacter().getEP())
+            return true;
+        if(move < 0)
+            return false;
+        if(move > 4)
+            return false;
+        else 
+            return false;
+    }
     
     public void displayStats(Player player1, Player player2) {
         System.out.println("✧˖ °. ݁₊ ⊹ . ݁˖ . ݁‧₊˚ ☾.  ݁₊ ⊹ . ݁˖ . ݁˖°✧");
