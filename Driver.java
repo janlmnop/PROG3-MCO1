@@ -17,8 +17,8 @@
 // [ ] Fight!
 //      [D] +5 EP at the start of each round (ideally after round 1)
 //      [D] prompt players to choose from moves (loops until input is valid)
-//      [ ] execute moves (deal damages, change health, subtract from EP and HP)
-//      [ ] losing sequence
+//      [D] execute moves (deal damages, change health, subtract from EP and HP)
+//      [D] losing sequence
 // [ ] Miscellaneous
 //      [ ] add new attributes and methods to UML
 //      [ ] documenation
@@ -41,6 +41,13 @@ public class Driver {
         // roster1.get(0).abilities.add(0, w.abilities.get(1));
         // roster1.get(0).abilities.add(1, w.abilities.get(2));
         // roster1.get(0).abilities.add(2, w.abilities.get(3));
+        // roster1.add(new Character("Hamster"));
+        // roster1.get(1).setType("Mage");
+        // Mage m = new Mage();
+        // roster1.get(1).abilities.add(0, m.abilities.get(0));
+        // roster1.get(1).abilities.add(1, m.abilities.get(1));
+        // roster1.get(1).abilities.add(2, m.abilities.get(2));
+
 
         // ArrayList<Character> roster2 = new ArrayList<Character>();
         // roster2.add(new Character("Cat"));

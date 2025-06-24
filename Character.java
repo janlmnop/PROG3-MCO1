@@ -3,11 +3,11 @@ import java.util.*;
 public class Character {
     /* ATTRIBUTES */
     protected String name;
-    protected String type;                  // Character Type: Mage, Warrior, or Rogue
+    protected String type;                  // Character type: Mage, Warrior, or Rogue
     protected String details;               // Character description
     protected int energyPoints;
     protected int healthPoints;
-    protected ArrayList<Ability> abilities; // Character's abilities (3)
+    protected ArrayList<Ability> abilities; // Character's abilitiess
 
     /* CONSTRUCTOR(S) */
     public Character() {
@@ -107,22 +107,65 @@ public class Character {
         System.out.println("4 | Recharge\t\t | 0       | 0");
         System.out.println("--+----------------------+---------+--------");
     }
-
-    public void attack() {
-                
-    }
     
     
     public void executeMove(Player player1, Player player2, int move) {
-        player2.getChosenCharacter().setHP(player2.getChosenCharacter().getHP() - player1.getChosenCharacter().getAbilities().get(move).getAttackDamage());
-        player1.getChosenCharacter().setEP(player1.getChosenCharacter().getEP() - player1.getChosenCharacter().getAbilities().get(move).getEPCost());
+        if (player1.getChosenCharacter().getType() == "Mage")
+            executeMageAbilites(player1, player2, move);
+        else if (player1.getChosenCharacter().getType() == "Rogue")
+            executeRogueAbilites(player1, player2, move);
+        else if (player1.getChosenCharacter().getType() == "Warrior")
+            executeWarriorAbilites(player1, player2, move);
     }
 
-    public void defend() {
-        // not sure yet
+    public static void executeMageAbilites(Player player1, Player player2, int move) {
+        Mage m = new Mage();
+
+        switch (player1.getChosenCharacter().getAbilities().get(move).getName()) {
+            case "Arcane Bolt" : m.arcaneBolt(player1, player2); break;
+            case "Arcane Blast" : m.arcaneBlast(player1, player2); break;
+            case "Mana Channel" : m.manaChannel(player1); break;
+            case "Lesser Heal" : m.lesserHeal(player1); break;
+            case "Arcane Shield" : m.arcaneShield(player1, player2, player2.getMove()); break;
+            case "Defend" : m.defend(player1, player2); break;
+            case "Recharge" : m.recharge(player1);
+        }
     }
 
-    public void recharge() {
-        // not sure yet
+    public static void executeRogueAbilites(Player player1, Player player2, int move) {
+        Rogue r = new Rogue();
+
+        switch (player1.getChosenCharacter().getAbilities().get(move).getName()) {
+            case "Shiv" : r.shiv(player1, player2); break;
+            case "Backstab" : r.backstab(player1, player2); break;
+            case "Focus" : r.focus(player1); break;
+            case "Smoke Bomb" : r.smokeBomb(player1, player2, player2.getMove()); break;
+            case "Sneak Attack" : r.sneakAttack(player1, player2, player2.getMove()); break;
+            case "Defend" : r.defend(player1, player2); break;
+            case "Recharge" : r.recharge(player1); break;
+        }
+    }
+
+    public static void executeWarriorAbilites(Player player1, Player player2, int move) {
+        Warrior w = new Warrior();
+
+        switch (player1.getChosenCharacter().getAbilities().get(move).getName()) {
+            case "Cleave" : w.cleave(player1, player2); break;
+            case "Shield Bash" : w.shieldBash(player1, player2); break;
+            case "Ironclad Defense" : w.ironcladDefense(player1, player2, player2.getMove()); break;
+            case "Bloodlust" : w.bloodlust(player1); break;
+            case "Rallying Cry" : w.rallyingCry(player1); break;
+            case "Defend" : w.defend(player1, player2); break;
+            case "Recharge" : w.recharge(player1); break;
+        }
+    }
+
+    public void defend(Player player1, Player player2) {
+        player1.getChosenCharacter().setEP(player1.getChosenCharacter().getEP() - 15);
+        player1.getChosenCharacter().setHP(player1.getChosenCharacter().getHP() - (player2.getChosenCharacter().abilities.get(player2.getMove()).getAttackDamage()/2));
+    }
+
+    public void recharge(Player player1) {
+        player1.getChosenCharacter().setEP(player1.getChosenCharacter().getEP() + 5);
     }
 }

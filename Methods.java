@@ -57,7 +57,7 @@ public class Methods {
             System.out.println(thisPlayer.getName() + " selected " + thisPlayer.getRoster().get(option1).getName());
             thisPlayer.setChosenCharacter(thisPlayer.getRoster().get(option1));
             thisPlayer.getChosenCharacter().abilities.add(new Ability("defend"));
-            thisPlayer.getChosenCharacter().abilities.add(new Ability("defend"));
+            thisPlayer.getChosenCharacter().abilities.add(new Ability("recharge"));
             quitFlag = true;
         } else if (option2 == 1) {
             System.out.println("\nName: " + thisPlayer.getRoster().get(option1).getName());
@@ -229,6 +229,7 @@ public class Methods {
             do {
                 System.out.print("Move: ");
                 p1Move = numSC.nextInt();
+                player1.setMove(p1Move);
             } while (isValidMove(player1, player1.getChosenCharacter(), p1Move) != false);
 
             System.out.println("\n[Player 2's Move]");
@@ -238,6 +239,7 @@ public class Methods {
             do {
                 System.out.print("Move: ");
                 p2Move = numSC.nextInt();
+                player2.setMove(p2Move);
             } while (isValidMove(player2, player2.getChosenCharacter(), p2Move) != false);
 
             // execute move
@@ -249,9 +251,11 @@ public class Methods {
             i++;
         } while (player1.getChosenCharacter().getHP() > 0 && player2.getChosenCharacter().getHP() > 0);
 
-        if (player1.getChosenCharacter().getHP() > player2.getChosenCharacter().getHP()) {
+        if (player1.getChosenCharacter().getHP() > player2.getChosenCharacter().getHP())
             System.out.println(player1.getName() + " Won!");
-        }
+        else
+            System.out.println(player2.getName() + " Won!");
+        
     }
 
     // checks for valid moves | if epcost is gt ep ng character

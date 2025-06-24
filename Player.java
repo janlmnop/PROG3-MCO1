@@ -5,6 +5,7 @@ public class Player {
     private String name;
     private ArrayList<Character> roster = new ArrayList<>(3);       // player's list of characters (maximum of 3)
     private Character chosenCharacter;                                              // player's character that will enter the game
+    private int move;                                                               // player's move for the current round
 
     /* CONSTRUCTOR(S) */
     public Player() {
@@ -40,6 +41,14 @@ public class Player {
 
     public ArrayList<Character> getRoster() {
         return roster;
+    }
+
+    public int getMove() {
+        return move;
+    }
+
+    public void setMove(int move) {
+        this.move = move;
     }
 
     
